@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ESP-IDF
+build/
+sdkconfig
+sdkconfig.old
+*.elf
+*.bin
+*.map
+.kconfig_img
+
+# Models & Data (dynamic and user-specific)
+server/data/
+*.pkl
+*.pt
+*.pth
+*.sqlite
+*.db
+dump.rdb
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+

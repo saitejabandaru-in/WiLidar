@@ -1,0 +1,29 @@
+system:
+  seed: 42
+  sampling_rate_hz: 100
+  redis_stream_maxlen: 50000
+
+dsp:
+  hampel:
+    window_size: 15
+    n_sigmas: 3
+  butterworth:
+    lowcut: 0.1
+    highcut: 10.0
+    order: 4
+  pca:
+    n_components: 10
+
+models:
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.05
+  pytorch_position_net:
+    input_dim: 228
+    hidden_dim: 128
+    output_dim: 3 # (x, y, confidence)
+    dropout_rate: 0.3
+    learning_rate: 0.001
+    batch_size: 64
+    epochs: 150

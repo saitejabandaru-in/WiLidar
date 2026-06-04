@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # 1. Redis State and Telemetry Store
+  redis:
+    image: redis:7-alpine
+    container_name: wilidar-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --appendfsync everysec
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - wilidar-net
+
+  # 2. UDP CSI Data Receiver Service
+  csi-collector:
+    build: .
+    container_name: wilidar-collector
+    restart: unless-stopped
+    command: python -m server.collector.udp_receiver
+    ports:
+      - "5005:5005/udp"
+      - "5006:5006/udp"
+    environment:
+      - REDIS_HOST=redis
+      - UDP_HOST=0.0.0.0
+    depends_on:
+      - redis
+    networks:
+      - wilidar-net
+
+  # 3. REST API & WebSocket Signal Processor
+  api-server:
+    build: .
+    container_name: wilidar-api
+    restart: unless-stopped
+    command: uvicorn server.api.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - DATA_DIR=/app/data
+      - SIMULATION_MODE=${SIMULATION_MODE:-true}
+      - SIMULATOR_TARGET_IP=csi-collector
+    volumes:
+      - system_data:/app/data
+    depends_on:
+      - redis
+    networks:
+      - wilidar-net
+
+  # 4. Light Nginx Static Web Dashboard (Section 8.1 / Docker)
+  dashboard:
+    image: nginx:alpine
+    container_name: wilidar-dashboard
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./dashboard:/usr/share/nginx/html:ro
+    depends_on:
+      - api-server
+    networks:
+      - wilidar-net
+
+networks:
+  wilidar-net:
+    driver: bridge
+
+volumes:
+  redis_data:
+  system_data:

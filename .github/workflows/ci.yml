@@ -1,0 +1,67 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Linting Tools
+        run: |
+          pip install ruff black
+
+      - name: Run Black formatter check
+        run: black --check . --exclude '/(\.venv|\.git|hardware)/'
+
+      - name: Run Ruff linter check
+        run: ruff check . --exclude .venv
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio anyio
+
+      - name: Run pytest test suite
+        env:
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
+          SIMULATION_MODE: "true"
+        run: |
+          PYTHONPATH=. pytest -v
