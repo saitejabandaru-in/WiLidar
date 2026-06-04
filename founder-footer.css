@@ -1,0 +1,345 @@
+/* ==========================================================================
+   Universal Reusable Luxury Founder Footer Styling
+   Author: Sai Teja Bandaru
+   Theme: Obsidian & Champagne Gold
+   ========================================================================== */
+
+.luxury-founder-footer {
+    /* Color Variables for self-containment */
+    --ff-bg: #f5f5f7;
+    --ff-bg-card: transparent;
+    --ff-border: rgba(0, 0, 0, 0.08);
+    --ff-border-gold: rgba(197, 160, 89, 0.25);
+    --ff-border-gold-hover: rgba(197, 160, 89, 0.55);
+    --ff-gold: #c5a059;
+    --ff-gold-glow: rgba(197, 160, 89, 0.08);
+    --ff-platinum: #1d1d1f;
+    --ff-silver: #515154;
+    --ff-muted: #86868b;
+    --ff-text: #1d1d1f;
+    --ff-font-serif: 'Cinzel', 'Playfair Display', serif;
+    --ff-font-heading: 'Outfit', -apple-system, sans-serif;
+    --ff-font-mono: 'Share Tech Mono', monospace;
+    --ff-font-body: 'Outfit', -apple-system, sans-serif;
+    --ff-transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    margin-top: 64px; /* Expanded spacing */
+    margin-bottom: 0;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    border-top: 1px solid var(--ff-border);
+    padding-top: 48px;
+}
+
+/* Outer Container with Premium Tick Marks */
+.ff-panel {
+    background: var(--ff-bg-card);
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    position: relative;
+    box-shadow: none;
+    transition: none;
+}
+
+.ff-panel:hover {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* Custom Sponsor Button Styling */
+.ff-sponsor-btn {
+    border: 1px solid var(--ff-gold);
+    padding: 6px 14px;
+    border-radius: 4px;
+    background: rgba(212, 175, 55, 0.04);
+    color: var(--ff-gold) !important;
+    transition: all var(--ff-transition) !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--ff-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.ff-sponsor-btn:hover {
+    background: var(--ff-gold) !important;
+    color: #000000 !important;
+    box-shadow: 0 0 15px var(--ff-gold-glow);
+}
+
+.ff-sponsor-btn svg {
+    stroke: currentColor;
+    fill: none;
+}
+
+.ff-sponsor-btn:hover svg {
+    fill: #000000;
+}
+
+/* Precision Corner Ticks */
+.ff-tick {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: rgba(212, 175, 55, 0.4);
+    border-style: solid;
+    pointer-events: none;
+    z-index: 10;
+}
+.ff-tick.tl { top: -1px; left: -1px; border-width: 1.5px 0 0 1.5px; }
+.ff-tick.tr { top: -1px; right: -1px; border-width: 1.5px 1.5px 0 0; }
+.ff-tick.bl { bottom: -1px; left: -1px; border-width: 0 0 1.5px 1.5px; }
+.ff-tick.br { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
+
+/* Grid Layout: Avatar and Content split */
+.ff-layout {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+/* Left Column: Premium Framed Avatar */
+.ff-avatar-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.ff-avatar-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+    border: 1px solid var(--ff-border);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    background: #f5f5f7;
+}
+
+.ff-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: grayscale(15%) contrast(105%);
+    transition: transform var(--ff-transition), opacity var(--ff-transition), filter var(--ff-transition);
+}
+
+.ff-panel:hover .ff-avatar {
+    transform: scale(1.04);
+    opacity: 1;
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* Right Column: Bio & Core Info */
+.ff-content-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.ff-badge {
+    font-family: var(--ff-font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    color: var(--ff-gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.ff-name-area {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.ff-name {
+    font-family: var(--ff-font-serif);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--ff-text);
+    letter-spacing: 0.05em;
+}
+
+.ff-title {
+    font-family: var(--ff-font-heading);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ff-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.ff-bio {
+    font-family: var(--ff-font-body);
+    font-size: 14.5px;
+    color: var(--ff-silver);
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 28px;
+    max-width: 860px;
+}
+
+/* Professional Links with custom SVGs */
+.ff-links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.ff-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--ff-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ff-silver);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color var(--ff-transition), transform var(--ff-transition);
+}
+
+.ff-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    transition: stroke var(--ff-transition);
+}
+
+.ff-link:hover {
+    color: var(--ff-gold);
+    transform: translateY(-1px);
+}
+
+/* Metadata Stats Block (Highlighting Scientific focus) */
+.ff-metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    border-top: 1px solid var(--ff-border);
+    padding-top: 28px;
+    margin-bottom: 12px;
+}
+
+.ff-metadata-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ff-metadata-label {
+    font-family: var(--ff-font-mono);
+    font-size: 8.5px;
+    color: var(--ff-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.ff-metadata-value {
+    font-family: var(--ff-font-heading);
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--ff-platinum);
+}
+
+/* Absolute bottom: Copyright and standard notices */
+.ff-subfooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--ff-border);
+    padding-top: 24px;
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--ff-muted);
+    width: 100%;
+}
+
+.ff-copyright {
+    font-weight: 300;
+}
+
+.ff-copyright strong {
+    font-weight: 500;
+    color: var(--ff-platinum);
+}
+
+.ff-stamp {
+    font-family: var(--ff-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    color: rgba(212, 175, 55, 0.5);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ff-stamp svg {
+    stroke: currentColor;
+    stroke-width: 2;
+    width: 10px;
+    height: 10px;
+}
+
+/* ---------------------------------------------------------
+   Responsive Layout Rules
+   --------------------------------------------------------- */
+@media (max-width: 900px) {
+    .ff-panel {
+        padding: 36px 28px;
+    }
+    
+    .ff-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .ff-avatar-column {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 24px;
+    }
+    
+    .ff-avatar-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .ff-metadata-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .ff-subfooter {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 500px) {
+    .ff-avatar-column {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
