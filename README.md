@@ -7,7 +7,7 @@ WiLidar is an open-source, device-free spatial intelligence and localization fra
 ## 🌐 Live Interactive Sandbox
 
 The static web showcase and interactive spatial sandbox dashboard is hosted publicly on GitHub Pages:
-👉 **[Launch WiLidar Interactive Sandbox](https://saitejabandaru-in.github.io/WiLidar/)**
+👉 **[Launch WiLidar Interactive Sandbox](https://saitejabandaru-in.github.io/WiLidar/#dashboard-anchor)**
 
 ### Key Core Features of the Showcase
 * **Interactive Floor Plan Room Mapper**: Real-time room occupancy coordinate mapping using simulated wireless path walks.
